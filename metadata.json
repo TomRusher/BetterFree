@@ -1,0 +1,6 @@
+{
+  "name": "BetterFree",
+  "description": "Private offline-first personal habit & urge awareness tool (non-medical, 100% on-device).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

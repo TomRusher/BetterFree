@@ -1,0 +1,190 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0F17"><title>BetterFree</title>
+<style>
+:root{--bg:#0B0F17;--card:#121826;--line:#1D2638;--sage:#8A9A86;--blue:#9DB4E0;--blue2:#5C7FB8;--tx:#EDE6D8;--mu:#8892A4;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+#app{max-width:430px;height:100%;margin:0 auto;display:flex;flex-direction:column}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px 20px 0;height:48px}
+header b{font-weight:600;letter-spacing:.2px;color:var(--sage)}
+main{flex:1;overflow-y:auto;padding:8px 20px 24px}
+h1{font-size:26px;line-height:32px;font-weight:600;margin:6px 0 4px}
+h2{font-size:17px;margin:0 0 6px;font-weight:600}
+.mu{color:var(--mu);font-size:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:16px}
+.card p{margin:8px 0 0}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;height:54px;border-radius:27px;background:var(--sage);color:#0B0F17;font-weight:600;margin-top:16px}
+.btn.g{background:none;border:1px solid #3A4A66;color:#C9D3E6}.btn:disabled{background:#1A2233;color:#6B7689}
+textarea{width:100%;min-height:96px;margin-top:12px;background:#0F1522;border:1px solid #27324A;border-radius:16px;padding:14px;color:var(--tx);font:inherit;resize:vertical}
+textarea:focus,button:focus-visible{outline:2px solid var(--blue2);outline-offset:2px}
+nav{display:flex;border-top:1px solid var(--line);background:#0E1420;padding:8px 4px 10px}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;color:#6B7689}
+nav button.on{color:var(--sage)}svg{display:block}
+.seg{display:flex;background:#0F1522;border:1px solid var(--line);border-radius:14px;padding:3px;margin-top:12px}
+.seg button{flex:1;padding:9px;border-radius:11px;font-size:14px;color:var(--mu)}.seg button.on{background:#1B2540;color:var(--blue)}
+.dots{display:flex;gap:7px;justify-content:center;margin-top:16px}.dots i{width:7px;height:7px;border-radius:4px;background:#27324A}.dots i.on{width:22px;background:var(--sage)}
+.stones{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.stone{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 14px;text-align:center}
+.stone .s{height:54px;margin:0 auto 10px;background:linear-gradient(145deg,#a3b19f,#6f8069)}
+.stone.lock{opacity:.45}.stone.lock .s{background:none;border:1.5px dashed #3A4A66}
+.stone b{display:block;font-size:14px}.stone span{font-size:12px;color:var(--mu)}
+.chip{display:block;width:100%;text-align:left;padding:12px 14px;margin-top:8px;border-radius:14px;background:#0F1522;border:1px solid #27324A;font-size:15px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.tg{width:48px;height:28px;border-radius:14px;background:#27324A;position:relative;flex:none}.tg:after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:11px;background:#C9D3E6;transition:.2s}
+.tg.on{background:var(--sage)}.tg.on:after{left:23px;background:#0B0F17}
+.ov{position:fixed;inset:0;background:rgba(5,8,13,.7);display:flex;align-items:flex-end;justify-content:center;z-index:9}
+.sheet{width:100%;max-width:430px;max-height:88%;overflow-y:auto;background:var(--bg);border:1px solid var(--line);border-radius:26px 26px 0 0;padding:20px 20px calc(24px + env(safe-area-inset-bottom,0px))}
+.bar{height:8px;border-radius:4px;background:#1A2233;margin-top:6px}.bar i{display:block;height:8px;border-radius:4px;background:var(--sage)}
+#bc{width:170px;height:170px;border-radius:85px;margin:24px auto 8px;background:#12203A;border:2px solid var(--blue2);display:flex;align-items:center;justify-content:center;flex-direction:column;transform:scale(.6)}
+@media (prefers-reduced-motion:reduce){#bc{transition:none!important}}
+.brand{display:flex;align-items:center;gap:8px}
+.si{width:76px;height:76px;margin:0 auto 10px}.si svg{width:100%;height:100%}
+.note{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin-top:10px}
+.note.sel{border-color:var(--sage)}.note .mu{display:block;margin-bottom:4px}
+.note .nx{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:15px}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--mu);font-size:14px;padding:6px 0}
+</style></head><body><div id="app"><header><div class="brand"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" role="img" aria-label="BetterFree logo"><path d="M19.52 9.26A8 8 0 1 1 17.14 5.87" stroke="#8A9A86" stroke-width="2" stroke-linecap="round"/><circle cx="20.6" cy="5.4" r="1.7" fill="#9DB4E0"/><circle cx="12" cy="12" r="2.2" fill="#8A9A86"/></svg><b>BetterFree</b></div><button id="gear" aria-label="Settings" onclick="openSet()"></button></header><main id="main"></main><nav id="nav"></nav></div><div id="ov"></div>
+<script>
+const $=s=>document.querySelector(s);
+const D={lang:"en",ms:true,prog:true,done:0,started:Date.now(),notes:[],mot:[],stones:[],streak:0,lastCheck:"",tab:"home",grad:false,seg:{art:"read",jr:"notes"}};
+let S;try{S={...D,...JSON.parse(localStorage.getItem("bf")||"{}")}}catch(e){S={...D}}
+const save=()=>{try{localStorage.setItem("bf",JSON.stringify(S))}catch(e){}};
+const c=o=>o[S.lang==="cs"?1:0];
+const UI={ms:["Milestones","Milestony"],art:["Articles","Články"],home:["Home","Domů"],jr:["Journal","Deník"],sos:["SOS","SOS"],
+chapter:["Chapter","Kapitola"],cont:["Continue","Pokračovat"],wait:["Continue in","Pokračuj za"],noteT:["Note for today","Poznámka na dnes"],noteH:["One note per day. Tap an earlier day to read or edit it.","Jedna poznámka na den. Klepnutím na dřívější den ji přečteš nebo upravíš."],toToday:["Back to today","Zpět na dnešek"],prev:["Earlier days","Dřívější dny"],bk:["Back","Zpět"],
+today:["Today’s reflection","Dnešní zamyšlení"],rem:["Your reason","Tvůj důvod"],ci:["A quiet check-in: how did today feel?","Tiché ohlédnutí: jaký byl dnešek?"],ci1:["Clear and calm","Čistý a klidný"],ci2:["I slipped, and that’s okay","Podlehl(a) jsem, a to je v pořádku"],
+silent:["Chapters complete","Kapitoly dokončeny"],silentB:["The app is quiet now. Live your life, and come back only if you need to.","Aplikace teď mlčí. Žij svůj život a vrať se, jen když budeš chtít."],
+stonesT:["Silent stones","Tiché kameny"],stonesS:["Kept quietly. They never disappear.","Uloženy v tichosti. Nikdy nezmizí."],
+read:["Reading","Čtení"],data:["Graphs & statistics","Grafy a statistiky"],ill:["Illustrative figures for this prototype. Replace with sourced data before release.","Ilustrativní hodnoty pro prototyp. Před vydáním nahraď ověřenými daty."],
+notes:["Notes","Poznámky"],mot:["My motivation","Moje motivace"],local:["Stored locally on your device","Uloženo jen v tvém zařízení"],
+ph:["What’s on your mind?","Co ti běží hlavou?"],save:["Save entry","Uložit"],why:["Why are you doing this?","Proč to děláš?"],others:["Motivations from others","Motivace od ostatních"],saveM:["Save my motivation","Uložit motivaci"],
+settings:["Settings","Nastavení"],tMs:["Show Milestones tab","Zobrazit záložku Milestony"],tPr:["Show chapter numbers","Zobrazit čísla kapitol"],lang:["Language","Jazyk"],close:["Close","Zavřít"],
+sup:["Support the project","Podpořit projekt"],supB:["BetterFree is built by two students. It is 100% free, with no ads, ever. Optional donations help keep it running for the next person.","BetterFree vytvořili dva studenti. Je 100% zdarma a bez reklam. Dobrovolné příspěvky pomáhají udržet ho v chodu pro další lidi."],
+pay:["Pay it forward (optional)","Přispět dál (dobrovolné)"],payD:["Donation link will be added here.","Odkaz na příspěvek sem doplníme."],
+proto:["Prototype tools","Nástroje prototypu"],pGrad:["Preview graduation","Náhled závěru"],pWeek:["Simulate a clear week","Simulovat klidný týden"],
+free:["You are free.","Jsi svobodný/á."],freeB:["Uninstall this app with pride and go live your life.","Odinstaluj tuto aplikaci s hrdostí a běž žít."],clear:["Clear my data & uninstall","Smazat data a odinstalovat"],cleared:["Your data is erased. Now remove BetterFree from your home screen. Take care.","Data jsou smazána. Teď odstraň BetterFree z domovské obrazovky. Měj se krásně."],
+sos1:["What is happening right now?","Co se právě děje?"],yes:["Yes","Ano"],no:["No","Ne"],doit:["I’ll do this","Udělám to"],other:["Not this one","Tohle ne"],
+back:["Start over","Začít znovu"],doneT:["You rode it out.","Zvládl(a) jsi to."],doneB:["Urges are harmless neural misfires. They rise, peak and pass, and you just watched one go.","Chutě jsou neškodná selhání nervových spojů. Stoupnou, vrcholí a odezní, a ty jsi jednu právě pozoroval(a)."],
+fb:["Let’s breathe together","Pojďme dýchat spolu"],fbB:["Breathe in 4, hold 7, out 8. An urge is a harmless neural misfire passing through. You don’t have to obey it.","Nádech 4, zadrž 7, výdech 8. Chuť je neškodné selhání nervových spojů, které prochází. Nemusíš ji poslechnout."],calm:["I feel calmer","Je mi klidněji"],
+in:["Breathe in","Nádech"],hold:["Hold","Zadrž"],out:["Breathe out","Výdech"]};
+const t=k=>c(UI[k]);
+const CH=[
+{t:["Just observe","Jen pozoruj"],b:["You don’t need to quit today. If you still give in, don’t fight it and don’t punish yourself. Just watch how you feel before, during and right after.","Dnes nemusíš přestat. Pokud ještě podlehneš, nebojuj s tím a netrestej se. Jen sleduj, jak se cítíš předtím, během a těsně potom."],q:["What did you feel right after?","Co jsi cítil(a) těsně potom?"]},
+{t:["The empty spike","Prázdný vrchol"],b:["Excitement peaks fast, then drops below where you started. Notice that dip. The reward is mostly relief from a craving the habit created itself.","Vzrušení rychle vyvrcholí a pak klesne pod úroveň, na které jsi začal(a). Všimni si toho propadu. Odměna je většinou úleva od chuti, kterou si zvyk sám vytvořil."],q:["Where exactly did you notice the dip?","Kde přesně jsi ten propad zaznamenal(a)?"]},
+{t:["The itch illusion","Iluze svědění"],b:["Scratching an itch feels good only because the itch was there. The urge is the problem, not the solution.","Škrábání svědění je příjemné jen proto, že svědění vůbec bylo. Chuť není řešení, je to problém."],q:["What were you really looking for?","Co jsi ve skutečnosti hledal(a)?"]},
+{t:["Nothing is taken away","Nic se neubírá"],b:["You aren’t giving up pleasure. You’re giving up a small cycle of craving and relief, and gaining attention, energy and presence.","Nevzdáváš se potěšení. Vzdáváš se malého cyklu chuti a úlevy a získáváš pozornost, energii a přítomnost."],q:["What would you like to get back?","Co bys chtěl(a) získat zpět?"]},
+{t:["Urges are echoes","Chutě jsou ozvěny"],b:["An urge is a learned echo of an old pathway. It rises, peaks and fades within minutes when it isn’t fed.","Chuť je naučená ozvěna staré dráhy. Stoupne, vrcholí a během pár minut odezní, když ji nekrmíš."],q:["How long did your last urge last?","Jak dlouho trvala tvá poslední chuť?"]},
+{t:["Curiosity, not resistance","Zvědavost, ne odpor"],b:["Willpower tires out. Curiosity doesn’t. When an urge appears, get curious about it instead of fighting it.","Síla vůle se unaví, zvědavost ne. Když přijde chuť, buď k ní zvědavý(á) místo boje."],q:["What did you notice about the urge?","Čeho sis na chuti všiml(a)?"]},
+{t:["Free from within","Svoboda zevnitř"],b:["You’ve taken the illusion apart piece by piece. What remains is a choice that no longer feels like a sacrifice.","Rozebral(a) jsi iluzi kousek po kousku. Zbývá volba, která už nepůsobí jako oběť."],q:["What has changed for you?","Co se pro tebe změnilo?"]}];
+const ST=[
+{id:"ch1",t:["First step","První krok"],d:["Completed a first chapter","Dokončena první kapitola"]},
+{id:"ch4",t:["Seeing the pattern","Vidím vzorec"],d:["Completed four chapters","Dokončeny čtyři kapitoly"]},
+{id:"ch7",t:["Illusion dismantled","Iluze rozebrána"],d:["Completed every chapter","Dokončeny všechny kapitoly"]},
+{id:"urge",t:["Rode the wave","Přeplaval(a) jsem vlnu"],d:["Got through an urge","Zvládnutá chuť"]},
+{id:"why",t:["Knew my why","Znám své proč"],d:["Wrote a personal motivation","Napsána vlastní motivace"]},
+{id:"week",t:["A week of clarity","Týden jasna"],d:["A full week of clear days","Celý týden jasných dnů"]}];
+const AR=[
+{t:["How dopamine receptors rewire","Jak se přeprogramují dopaminové receptory"],b:["Repeated artificial spikes make the brain turn down receptor sensitivity, so ordinary joys feel flat. Given time without the spikes, sensitivity gradually recovers.","Opakované umělé vrcholy vedou mozek ke snížení citlivosti receptorů, takže běžné radosti působí fádně. Bez nich se citlivost postupně vrací."]},
+{t:["Why willpower fails","Proč selhává síla vůle"],b:["Willpower is a limited resource that drops with stress, tiredness and shame. Understanding an urge costs far less energy than suppressing it.","Síla vůle je omezený zdroj, který klesá se stresem, únavou a studem. Porozumět chuti stojí mnohem méně energie než ji potlačovat."]},
+{t:["How neural pathways form","Jak vznikají nervové dráhy"],b:["Neurons that fire together wire together. Each time you observe an urge without acting, the old path weakens a little and a calmer one grows.","Neurony, které se aktivují společně, se i propojují. Pokaždé, když chuť jen pozoruješ, stará dráha trochu slábne a roste klidnější."]},
+{t:["The physiology of cold showers","Fyziologie studené sprchy"],b:["Cold exposure triggers a brief rise in alertness and noradrenaline, and a slower exhale calms the nervous system. It is a quick physical reset, not a cure.","Chlad krátce zvýší bdělost a noradrenalin a pomalý výdech uklidní nervový systém. Je to rychlý fyzický restart, ne lék."]}];
+const BARS=[[["Replacing the habit with movement","Nahrazení pohybem"],64],[["Understanding the urge cycle","Pochopení cyklu chuti"],58],[["Talking or journaling","Rozhovor nebo psaní"],47],[["Willpower alone","Samotná síla vůle"],21]];
+const OTH=[["To regain genuine mental clarity and focus","Získat zpět skutečné soustředění a jasnou mysl"],["To be fully present in real relationships","Být plně přítomný(á) ve skutečných vztazích"],["To stop feeling divided against myself","Přestat se cítit rozpolceně sám v sobě"],["To have energy for what I actually care about","Mít energii na to, na čem mi opravdu záleží"]];
+const T1=["Go outside for 5 minutes. Just observe: three sounds, three colours, the air on your skin. Let the urge pass beside you.","Jdi na 5 minut ven. Jen pozoruj: tři zvuky, tři barvy, vzduch na kůži. Nech chuť projít vedle sebe."];
+const T2=["Splash cold water on your face for 30 seconds, or take a short cold shower. Breathe slowly.","Opláchni si obličej studenou vodou na 30 sekund, nebo se krátce osprchuj studenou. Dýchej pomalu."];
+const T3=["Do 20 pushups, or stand up, roll your shoulders and walk around the room.","Udělej 20 kliků, nebo vstaň, zakrouži rameny a projdi se po místnosti."];
+const T4=["Message or call someone you trust, even just to say hi. Talking breaks the loop.","Napiš nebo zavolej někomu, komu věříš, i jen pozdrav. Rozhovor smyčku přeruší."];
+const T5=["Drink a full glass of water, then stretch your arms overhead for a minute.","Vypij sklenici vody a minutu se protahuj s rukama nad hlavou."];
+const T6=["Put your phone in another room for 15 minutes, so the urge has nothing to grab.","Dej telefon na 15 minut do jiné místnosti, ať chuť nemá za co chytit."];
+const T7=["Name 5 things you see, 4 you can touch, 3 you hear, 2 you smell and 1 you taste.","Pojmenuj 5 věcí, které vidíš, 4, kterých se můžeš dotknout, 3, které slyšíš, 2, které cítíš čichem, a 1 chuťovou."];
+const T8=["Write the urge down in three words, then watch what changes. Naming it shrinks it.","Napiš chuť třemi slovy a sleduj, co se změní. Pojmenování ji zmenší."];
+const T9=["Do one small chore with your hands: wash a cup, make the bed, tidy your desk.","Udělej jednu drobnost rukama: umyj hrnek, ustel postel, ukliď stůl."];
+const T10=["Put on one calm piece of music and only listen to it for five minutes.","Pusť si jednu klidnou skladbu a pět minut ji jen poslouchej."];
+const Q=(en,cs,tk)=>[[en,cs],tk];
+const SOS={
+urge:{l:["I am feeling a strong urge right now","Právě cítím silnou chuť"],n:null,ch:[[["Can you physically leave the room and go outside right now?","Můžeš teď fyzicky odejít z místnosti a jít ven?"],T1],[["Can you take a cold shower or splash cold water on your face?","Můžeš se osprchovat studenou vodou nebo si opláchnout obličej?"],T2],[["Can you do 20 pushups or change your posture right now?","Můžeš teď udělat 20 kliků nebo změnit pozici těla?"],T3],Q("Can you put your phone in another room for a while?","Můžeš dát telefon na chvíli do jiné místnosti?",T6),Q("Can you message or call someone you trust?","Můžeš napsat nebo zavolat někomu, komu věříš?",T4),Q("Can you name what you see, hear and feel around you right now?","Můžeš pojmenovat, co kolem sebe právě vidíš, slyšíš a cítíš?",T7),Q("Can you drink a glass of water and stretch for a minute?","Můžeš vypít sklenici vody a minutu se protáhnout?",T5)]},
+gave:{l:["I just gave in / relapsed","Právě jsem podlehl(a)"],n:["That’s okay. Nothing you’ve earned is lost. Let’s turn this into something you can learn from.","V pořádku. Nic z toho, čeho jsi dosáhl(a), nezmizelo. Pojďme z toho udělat zkušenost."],ch:[[["Can you pause and notice how you feel right now, without judging yourself?","Můžeš se zastavit a všimnout si, jak se právě cítíš, bez souzení?"],["Name what you feel in one word. Is any excitement left, or is it emptiness? That emptiness is the information.","Pojmenuj, co cítíš, jedním slovem. Zbylo nějaké vzrušení, nebo prázdnota? Ta prázdnota je informace."]],[["Can you leave this room and get some air?","Můžeš odejít z místnosti a nadýchat se čerstvého vzduchu?"],T1],[["Can you splash cold water on your face?","Můžeš si opláchnout obličej studenou vodou?"],T2],Q("Can you write the feeling down in three words?","Můžeš pocit napsat třemi slovy?",T8),Q("Can you message or call someone you trust?","Můžeš napsat nebo zavolat někomu, komu věříš?",T4),Q("Can you drink a glass of water and stretch for a minute?","Můžeš vypít sklenici vody a minutu se protáhnout?",T5),Q("Can you do one small chore with your hands?","Můžeš udělat jednu drobnost rukama?",T9)]},
+guilt:{l:["I feel guilty, stressed, or overwhelmed","Cítím vinu, stres nebo přetížení"],n:null,ch:[[["Can you write one sentence about what you feel in your Journal?","Můžeš do Deníku napsat jednu větu o tom, co cítíš?"],["Open the Journal and write one sentence. Guilt softens once it’s put into words.","Otevři Deník a napiš jednu větu. Vina změkne, když ji pojmenuješ."]],[["Can you step outside or open a window for a few minutes?","Můžeš na pár minut vyjít ven nebo otevřít okno?"],T1],[["Can you do ten slow shoulder rolls and one long exhale?","Můžeš udělat deset pomalých krouživých pohybů ramen a jeden dlouhý výdech?"],T3],Q("Can you name what you see, hear and feel around you right now?","Můžeš pojmenovat, co kolem sebe právě vidíš, slyšíš a cítíš?",T7),Q("Can you message or call someone you trust?","Můžeš napsat nebo zavolat někomu, komu věříš?",T4),Q("Can you put on one calm piece of music and just listen?","Můžeš pustit jednu klidnou skladbu a jen poslouchat?",T10),Q("Can you do one small chore with your hands?","Můžeš udělat jednu drobnost rukama?",T9)]}};
+let sos={s:null,i:0,ph:"pick",h:[]},timer,bt,wl=5,rem0;
+const IC={ms:'<ellipse cx="12" cy="13" rx="8" ry="6"/><path d="M8 11c2-2 6-2 8 0"/>',art:'<path d="M4 5h7a2 2 0 012 2v12a2 2 0 00-2-2H4zM20 5h-7"/><path d="M20 5v12h-7"/>',home:'<path d="M4 11l8-7 8 7v9a1 1 0 01-1 1h-4v-6H9v6H5a1 1 0 01-1-1z"/>',jr:'<path d="M5 4h11l3 3v13H5zM9 11h6M9 15h6"/>',sos:'<circle cx="12" cy="5" r="2"/><path d="M12 7v14M8.5 11h7M5 14c0 4 3 7 7 7s7-3 7-7"/>',gear:'<path d="M4 7h9M19 7h1M4 17h1M11 17h9"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/>'};
+const STN={
+ch1:{c:["#8A9A86","#B3C0AF"],b:'<path d="M10 42c0-11 10-18 22-18s22 7 22 17c0 8-9 13-22 13S10 51 10 42z"/>',e:'<circle cx="32" cy="42" r="2.6"/>'},
+ch4:{c:["#8A9A86","#B3C0AF"],b:'<path d="M14 32c0-9 8-15 18-15s18 6 18 15v12c0 6-8 10-18 10s-18-4-18-10z"/>',e:'<path d="M24 31h16M24 38h16M24 45h16"/>'},
+ch7:{c:["#8A9A86","#B3C0AF"],b:'<path d="M12 36c0-11 9-19 20-19s20 8 20 19-9 17-20 17-20-6-20-17z"/>',e:'<path d="M34 20l-5 9 7 6-6 9 4 7"/>'},
+urge:{c:["#5C7FB8","#9DB4E0"],b:'<path d="M9 38c0-10 10-17 23-17s23 7 23 17-10 15-23 15S9 48 9 38z"/>',e:'<path d="M18 38q5-7 10 0t10 0 8 0"/>'},
+why:{c:["#5C7FB8","#9DB4E0"],b:'<path d="M14 34c0-9 8-16 18-16s18 7 18 16-8 18-18 18-18-9-18-18z"/>',e:'<path d="M32 26l7 9-7 9-7-9z"/>'},
+week:{c:["#8A9A86","#B3C0AF"],b:'<path d="M10 40c0-12 10-20 22-20s22 8 22 20c0 8-10 13-22 13S10 48 10 40z"/>',e:'<path d="M20 44h24M26 44a6 6 0 0 1 12 0M32 31v-3M22 34l-2-2M42 34l2-2"/>'}};
+function stoneSVG(id,u){const s=STN[id];if(u)return `<svg viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true"><g fill="${s.c[0]}">${s.b}</g><path d="M17 33c3-6 9-9 15-9" stroke="${s.c[1]}" stroke-width="3" stroke-linecap="round" opacity=".55"/><g stroke="#0B0F17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity=".6">${s.e}</g></svg>`;
+return `<svg viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true"><g stroke="#3A4A66" stroke-width="1.6" stroke-dasharray="3 3">${s.b}</g><g stroke="#2A3550" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 3">${s.e}</g></svg>`}
+const ico=(k,sz=24)=>`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const today=()=>new Date().toISOString().slice(0,10);
+const graduated=()=>S.done>=CH.length&&(S.grad||Date.now()-S.started>=60*864e5);
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+function stones(){const a=new Set(S.stones);if(S.done>=1)a.add("ch1");if(S.done>=4)a.add("ch4");if(S.done>=CH.length)a.add("ch7");if(S.mot.length)a.add("why");if(S.streak>=7)a.add("week");S.stones=[...a];save()}
+function go(k){clearInterval(timer);stopB();S.tab=k;save();render()}
+function nav(){if(!S.ms&&S.tab==="ms")S.tab="home";const tabs=["ms","art","home","jr","sos"].filter(k=>k!=="ms"||S.ms);
+$("#nav").innerHTML=tabs.map(k=>`<button class="${S.tab===k?"on":""}" onclick="go('${k}')">${ico(k)}${t(k)}</button>`).join("");$("#gear").innerHTML=ico("gear",22)}
+function render(){nav();document.documentElement.lang=S.lang;const v={ms:vMs,art:vArt,home:vHome,jr:vJr,sos:vSos}[S.tab]();$("#main").innerHTML=v;$("#main").scrollTop=0;if(S.tab==="home"&&!graduated()&&S.done<CH.length)startTimer();if(sos.ph==="fb"&&S.tab==="sos")startB()}
+const seg=(key,opts)=>`<div class="seg">${opts.map(([k,l])=>`<button class="${S.seg[key]===k?"on":""}" onclick="S.seg.${key}='${k}';save();render()">${l}</button>`).join("")}</div>`;
+function vMs(){return `<h1>${t("stonesT")}</h1><div class="mu">${t("stonesS")}</div><div class="stones">${ST.map(s=>{const u=S.stones.includes(s.id);return `<div class="stone ${u?"":"lock"}"><div class="si">${stoneSVG(s.id,u)}</div><b>${c(s.t)}</b><span>${u?c(s.d):"·"}</span></div>`}).join("")}</div>`}
+function line(ser,xl){const w=320,h=150,p=20;return `<svg viewBox="0 0 ${w} ${h}" width="100%" role="img"><path d="M${p} ${h-p}H${w-p}" stroke="#27324A"/>${ser.map(s=>{const P=s.v.map((v,i)=>[p+i*(w-2*p)/(s.v.length-1),h-p-v*(h-2*p)/100]);const d=P.map((q,i)=>(i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1)).join("");return `<path d="${d}L${w-p} ${h-p}L${p} ${h-p}Z" fill="${s.c}" opacity=".1"/><path d="${d}" fill="none" stroke="${s.c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`}).join("")}<text x="${p}" y="${h-4}" fill="#8892A4" font-size="10">${xl[0]}</text><text x="${w-p}" y="${h-4}" text-anchor="end" fill="#8892A4" font-size="10">${xl[1]}</text></svg>`}
+function vArt(){const b=seg("art",[["read",t("read")],["data",t("data")]]);
+if(S.seg.art==="read")return `<h1>${t("art")}</h1>${b}`+AR.map(a=>`<div class="card"><h2>${c(a.t)}</h2><p>${c(a.b)}</p></div>`).join("");
+const cs=S.lang==="cs",xl=["0",cs?"12 měs.":"12 mo"];
+return `<h1>${t("art")}</h1>${b}<div class="card"><h2>${cs?"Co lidem pomáhá":"What helps people most"}</h2>${BARS.map(([l,v])=>`<div style="margin-top:12px;font-size:14px;display:flex;justify-content:space-between"><span>${c(l)}</span><span class="mu">${v}%</span></div><div class="bar"><i style="width:${v}%"></i></div>`).join("")}</div>
+<div class="card"><h2>${cs?"Obnova citlivosti odměny":"Recovery of reward sensitivity"}</h2>${line([{v:[10,18,30,44,56,66,74,80,85,89,92,94,96],c:"#8A9A86"}],xl)}</div>
+<div class="card"><h2>${cs?"Stabilizace dopaminového základu":"Dopamine baseline stabilizing"}</h2>${line([{v:[40,34,30,32,38,48,58,66,72,76,78,80,80],c:"#8A9A86"},{v:[40,41,42,42,43,43,44,44,44,45,45,45,45],c:"#5C7FB8"}],xl)}<div class="mu" style="margin-top:6px">${cs?"Zelená: bez návyku · Modrá: s návykem":"Green: without the habit · Blue: with it"}</div></div><p class="mu">${t("ill")}</p>`}
+function vHome(){if(graduated())return `<div style="text-align:center;padding-top:48px"><div style="width:96px;height:96px;margin:0 auto;border-radius:48px;border:2px solid var(--sage);display:flex;align-items:center;justify-content:center;color:var(--sage)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><h1 style="font-size:32px;margin-top:24px">${t("free")}</h1><p class="mu" style="font-size:17px">${t("freeB")}</p><button class="btn" onclick="wipe()">${t("clear")}</button></div>`;
+if(rem0===undefined)rem0=S.mot.length&&Math.random()<.6?S.mot[Math.floor(Math.random()*S.mot.length)]:null;
+const h=rem0?`<div class="card" style="margin-top:4px;background:#101a2c"><div class="mu">${t("rem")}</div><p style="font-style:italic">“${esc(rem0)}”</p></div>`:"";
+if(S.done>=CH.length)return h+`<h1>${t("silent")}</h1><p class="mu">${t("silentB")}</p>`+ci();
+const n=S.done,ch=CH[n];
+return h+`<h1>${S.prog?t("chapter")+" "+(n+1)+": ":""}${c(ch.t)}</h1><div class="card"><div class="mu">${t("today")}</div><p>${c(ch.b)}</p><textarea id="ref" placeholder="${c(ch.q)}" oninput="refresh()"></textarea></div>${S.prog?`<div class="dots">${CH.map((_,i)=>`<i class="${i===n?"on":""}"></i>`).join("")}</div>`:""}<button class="btn" id="cb" disabled onclick="finish()"></button>`+ci()}
+function ci(){return S.lastCheck===today()?"":`<div class="card"><p style="margin:0">${t("ci")}</p><button class="btn g" style="height:46px" onclick="chk(1)">${t("ci1")}</button><button class="btn g" style="height:46px;margin-top:8px" onclick="chk(0)">${t("ci2")}</button></div>`}
+function chk(ok){S.lastCheck=today();S.streak=ok?S.streak+1:0;stones();render()}
+function refresh(){const b=$("#cb");if(!b)return;const ok=($("#ref")?.value.trim().length||0)>=12;b.disabled=wl>0&&!ok;b.textContent=b.disabled?t("wait")+" "+wl+"s":t("cont")}
+function startTimer(){clearInterval(timer);wl=5;refresh();timer=setInterval(()=>{wl--;refresh();if(wl<=0)clearInterval(timer)},1000)}
+function finish(){S.done++;stones();rem0=undefined;render()}
+function vJr(){const b=seg("jr",[["notes",t("notes")],["mot",t("mot")]]);const lb=`<div class="mu" style="margin-top:12px;display:flex;gap:8px;align-items:center;color:var(--blue)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>${t("local")}</div>`;
+if(S.seg.jr==="notes"){const cur=S.notes.find(n=>n.k===nd),isT=nd===today(),past=S.notes.filter(n=>n.k!==nd);
+return `<h1>${t("jr")}</h1>${b}${lb}<div class="mu" style="margin-top:14px">${isT?t("noteT"):dl(nd)}</div><textarea id="nt" style="min-height:170px;margin-top:8px" placeholder="${t("ph")}">${cur?esc(cur.x):""}</textarea><button class="btn" onclick="addNote()">${t("save")}</button>${isT?"":`<button class="btn g" style="height:46px" onclick="nd=today();render()">${t("toToday")}</button>`}<div class="mu" style="margin-top:20px">${t("noteH")}</div>${past.length?`<h2 style="margin-top:14px">${t("prev")}</h2>`+past.map(n=>`<button class="note" onclick="editNote('${n.k||""}')"><span class="mu">${n.k?dl(n.k):n.d}</span><span class="nx">${esc(n.x)}</span></button>`).join(""):""}`}
+return `<h1>${t("jr")}</h1>${b}${lb}<div class="card" style="margin-top:12px"><h2>${t("why")}</h2><textarea id="mt"></textarea><button class="btn" onclick="addMot()">${t("saveM")}</button></div><div class="card"><h2>${t("others")}</h2>${OTH.map((o,i)=>`<button class="chip" onclick="adopt(${i})">${c(o)}</button>`).join("")}</div>${S.mot.map(m=>`<div class="card"><p style="margin:0">${esc(m)}</p></div>`).join("")}`}
+let nd=today();
+function dl(k){try{return new Date(k+"T12:00:00").toLocaleDateString(S.lang==="cs"?"cs-CZ":"en-GB",{weekday:"long",day:"numeric",month:"long"})}catch(e){return k}}
+function addNote(){const x=$("#nt").value.trim();if(!x)return;const e=S.notes.find(n=>n.k===nd);if(e)e.x=x;else S.notes.push({k:nd,d:dl(nd),x});S.notes.sort((a,b)=>(b.k||"").localeCompare(a.k||""));save();render()}
+function editNote(k){if(!k)return;nd=k;render()}
+function addMot(){const x=$("#mt").value.trim();if(!x)return;S.mot.push(x);rem0=undefined;stones();render()}
+function adopt(i){$("#mt").value=c(OTH[i]);$("#mt").focus()}
+function vSos(){const q=k=>`<h1>${k}</h1>`;
+if(sos.ph==="pick")return `${q(t("sos1"))}${Object.entries(SOS).map(([k,v])=>`<button class="chip" style="padding:16px;font-size:16px" onclick="pick('${k}')">${c(v.l)}</button>`).join("")}`;
+const cur=SOS[sos.s];
+const bk=`<button class="back" onclick="sosBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>${t("bk")}</button>`;
+if(sos.ph==="q")return `${bk}${cur.n&&sos.i===0?`<div class="card" style="margin-top:4px"><p style="margin:0">${c(cur.n)}</p></div>`:""}${q(c(cur.ch[sos.i][0]))}<button class="btn" onclick="sosTo({ph:'t'})">${t("yes")}</button><button class="btn g" onclick="nextQ()">${t("no")}</button>`;
+if(sos.ph==="t")return `${bk}<div class="card" style="margin-top:4px"><p style="margin:0;font-size:18px">${c(cur.ch[sos.i][1])}</p></div><button class="btn" onclick="accept()">${t("doit")}</button><button class="btn g" onclick="nextQ()">${t("other")}</button>`;
+if(sos.ph==="fb")return `${bk}${q(t("fb"))}<div id="bc"><b id="bl" style="font-size:19px;color:#C9D8F2"></b><b id="bn" style="font-size:30px"></b></div><div class="card"><p style="margin:0">${t("fbB")}</p></div><button class="btn" onclick="accept()">${t("calm")}</button>`;
+return `${q(t("doneT"))}<div class="card"><p style="margin:0">${t("doneB")}</p></div><button class="btn g" onclick="sos={s:null,i:0,ph:'pick',h:[]};render()">${t("back")}</button>`}
+function sosTo(n){stopB();sos.h.push({s:sos.s,i:sos.i,ph:sos.ph});Object.assign(sos,n);render()}
+function sosBack(){stopB();const p=sos.h.pop();if(p){sos.s=p.s;sos.i=p.i;sos.ph=p.ph}else{sos.s=null;sos.i=0;sos.ph="pick"}render()}
+function pick(k){sos={s:k,i:0,ph:"pick",h:[]};sosTo({s:k,i:0,ph:"q"});if(k==="gave"){S.streak=0;save()}}
+function nextQ(){if(sos.i+1<SOS[sos.s].ch.length)sosTo({i:sos.i+1,ph:"q"});else sosTo({ph:"fb"})}
+function accept(){stopB();if(!S.stones.includes("urge"))S.stones.push("urge");save();sos.h=[];sos.ph="done";render()}
+function stopB(){clearTimeout(bt)}
+function startB(){const P=[["in",4,1],["hold",7,1],["out",8,.6]];let i=0;const step=()=>{const el=$("#bc");if(!el)return;const[k,s,sc]=P[i%3];$("#bl").textContent=t(k);el.style.transition=k==="hold"?"none":"transform "+s+"s ease-in-out";el.style.transform="scale("+sc+")";let n=s;$("#bn").textContent=n;const tick=()=>{n--;if(n>0&&$("#bn")){$("#bn").textContent=n;bt=setTimeout(tick,1000)}else{i++;step()}};bt=setTimeout(tick,1000)};setTimeout(step,50)}
+function tg(k){S[k]=!S[k];save();openSet();render()}
+function openSet(){$("#ov").innerHTML=`<div class="ov" onclick="if(event.target===this)closeSet()"><div class="sheet" role="dialog" aria-modal="true"><h1>${t("settings")}</h1>
+<div class="row"><span>${t("tMs")}</span><button class="tg ${S.ms?"on":""}" onclick="tg('ms')" aria-label="${t("tMs")}"></button></div>
+<div class="row"><span>${t("tPr")}</span><button class="tg ${S.prog?"on":""}" onclick="tg('prog')" aria-label="${t("tPr")}"></button></div>
+<div class="row"><span>${t("lang")}</span><div class="seg" style="margin:0;width:120px"><button class="${S.lang==="en"?"on":""}" onclick="setL('en')">EN</button><button class="${S.lang==="cs"?"on":""}" onclick="setL('cs')">CS</button></div></div>
+<div class="card"><h2>${t("sup")}</h2><p class="mu" style="font-size:14px">${t("supB")}</p><button class="btn g" style="height:46px" onclick="this.textContent=t('payD')">${t("pay")}</button></div>
+<div class="card"><h2>${t("proto")}</h2><button class="btn g" style="height:44px;margin-top:8px" onclick="S.done=CH.length;S.grad=true;stones();closeSet();go('home')">${t("pGrad")}</button><button class="btn g" style="height:44px;margin-top:8px" onclick="S.streak=7;stones();closeSet();go(S.ms?'ms':'home')">${t("pWeek")}</button></div>
+<button class="btn" onclick="closeSet()">${t("close")}</button></div></div>`}
+function setL(l){S.lang=l;save();rem0=undefined;openSet();render()}
+function closeSet(){$("#ov").innerHTML=""}
+function wipe(){try{localStorage.removeItem("bf")}catch(e){}$("#main").innerHTML=`<div style="padding-top:80px;text-align:center"><p style="font-size:18px">${t("cleared")}</p></div>`;$("#nav").innerHTML=""}
+stones();render();
+</script></body></html>
+
+</body></html>
